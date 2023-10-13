@@ -1,0 +1,39 @@
+{
+	"root": true,
+	"parser": "@typescript-eslint/parser",
+	"plugins": ["@typescript-eslint", "fsd-import", "unused-imports"],
+	"rules": {
+		"semi": "off",
+		"@typescript-eslint/semi": ["warn"],
+		"@typescript-eslint/no-empty-interface": [
+			"error",
+			{
+				"allowSingleExtends": true
+			}
+		],
+		"react-hooks/exhaustive-deps": "off",
+		"no-case-declarations": "off",
+		"no-unused-vars": "off",
+		"@typescript-eslint/no-unused-vars": "off",
+		"no-console": "warn",
+		"unused-imports/no-unused-imports": "warn",
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{
+				"vars": "all",
+				"varsIgnorePattern": "^_",
+				"args": "after-used",
+				"argsIgnorePattern": "^_"
+			}
+		],
+		"fsd-import/fsd-relative-path": "error",
+		"fsd-import/public-api-imports": "error",
+		"fsd-import/layer-imports": "error"
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:react-hooks/recommended"
+	]
+}
