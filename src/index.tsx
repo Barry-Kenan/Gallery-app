@@ -1,3 +1,4 @@
+import { ConfigProvider } from 'antd';
 import App from 'app';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
@@ -7,6 +8,14 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 	<BrowserRouter>
-		<App />
+		<ConfigProvider
+			theme={{
+				token: {
+					colorPrimary: '#2a6478'
+				}
+			}}
+		>
+			<App />
+		</ConfigProvider>
 	</BrowserRouter>
 );
