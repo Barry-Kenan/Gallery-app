@@ -1,10 +1,9 @@
 import { FC } from 'react';
+import AppRouter from './routes';
 import './styles/index.scss';
 
 const App: FC = () => {
-	// eslint-disable-next-line no-console
-	console.log(process.env.APP_URL);
-	return <div>App</div>;
+	return <AppRouter />;
 };
 
 export default App;
