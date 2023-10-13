@@ -1,16 +1,16 @@
 import { Radio, RadioChangeEvent } from 'antd';
-import { FC, useState } from 'react';
-import { ContentEnum } from 'shared/interfaces';
+import { FC } from 'react';
+import { useActions } from 'shared/model/hooks/useActions';
+import { useAppSelector } from 'shared/model/hooks/useAppSelector';
 import { contentRadioData } from '../const/data';
 import styles from './ContentRadio.module.scss';
 
 const ContentRadio: FC = () => {
-	const [value, setValue] = useState<ContentEnum>(ContentEnum.GALLERY);
+	const { content } = useAppSelector(state => state.galleryReducer);
+	const { setContent } = useActions();
 
 	const handleOnChange = ({ target: { value } }: RadioChangeEvent) => {
-		setValue(value);
-		// eslint-disable-next-line no-console
-		console.log(value);
+		setContent(value);
 	};
 
 	return (
@@ -19,7 +19,7 @@ const ContentRadio: FC = () => {
 			optionType='button'
 			buttonStyle='solid'
 			size='large'
-			value={value}
+			value={content}
 			onChange={handleOnChange}
 			className={styles.radio}
 		/>
