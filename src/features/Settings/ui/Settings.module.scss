@@ -1,0 +1,24 @@
+@use 'shared/styles' as *;
+
+.settings {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	max-width: 600px;
+	padding: 10px;
+	background-color: $gray-light;
+	border-radius: $radius;
+	box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
+
+	.button {
+		display: flex;
+		gap: 5px;
+		align-items: flex-start;
+
+		&:hover {
+			svg * {
+				fill: $primary;
+			}
+		}
+	}
+}
