@@ -1,5 +1,6 @@
 import { setContent } from 'entities/ContentRadio';
-import { IImage } from 'shared/interfaces';
+import { setSort } from 'features/Settings';
+import { IImage, SortEnum } from 'shared/interfaces';
 import { GalleryAction, GalleryActionsEnum } from 'shared/model/action-types';
 
 const setImages = (payload: IImage[]): GalleryAction => ({
@@ -7,8 +8,9 @@ const setImages = (payload: IImage[]): GalleryAction => ({
 	payload
 });
 
-const getImages = (): GalleryAction => ({
-	type: GalleryActionsEnum.GET_IMAGES
+const getImages = (payload: SortEnum): GalleryAction => ({
+	type: GalleryActionsEnum.GET_IMAGES,
+	payload
 });
 
-export const galleryActions = { setContent, setImages, getImages };
+export const galleryActions = { setContent, setImages, getImages, setSort };

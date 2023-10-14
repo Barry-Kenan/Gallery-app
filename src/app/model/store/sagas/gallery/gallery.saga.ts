@@ -1,17 +1,16 @@
 import { all, fork, put, takeEvery } from 'redux-saga/effects';
 import { IImage } from 'shared/interfaces';
-import { GalleryActionsEnum } from 'shared/model/action-types';
+import { GalleryActionsEnum, GetImages } from 'shared/model/action-types';
 import { galleryApi } from 'shared/model/api';
-import { LS_IMAGES_KEY } from 'shared/model/const';
+import { sortArray } from 'shared/model/lib';
 import { galleryActions } from '../../actions/gallery/gallery.actions';
 
-function* getImagesSaga() {
+function* getImagesSaga({ payload }: GetImages) {
 	try {
-		let images: IImage[] = JSON.parse(localStorage.getItem(LS_IMAGES_KEY));
-		if (!images) {
-			images = yield galleryApi.getImages();
-		}
-		yield put(galleryActions.setImages(images));
+		let images: IImage[] = yield galleryApi.getImages();
+		images = images.map((e, i) => ({ ...e, id: i }));
+		const sortedImages = sortArray(images, payload);
+		yield put(galleryActions.setImages(sortedImages));
 	} catch (error) {
 		// eslint-disable-next-line no-console
 		console.log(error);

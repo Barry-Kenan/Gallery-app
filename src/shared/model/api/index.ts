@@ -8,6 +8,6 @@ export const instanceApi = axios.create({
 
 export const galleryApi = {
 	getImages() {
-		return instanceApi.get('/catalog.json').then(res => res.data);
+		return instanceApi.get('catalog.json').then(res => res.data);
 	}
 };

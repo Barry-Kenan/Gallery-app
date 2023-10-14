@@ -1,20 +1,22 @@
 import { FC, useEffect } from 'react';
 import { ContentEnum } from 'shared/interfaces';
+import { LS_IMAGES_KEY } from 'shared/model/const';
 import { useActions } from 'shared/model/hooks/useActions';
 import { useAppSelector } from 'shared/model/hooks/useAppSelector';
-import { withLayout } from 'widgets';
+import { Gallery, withLayout } from 'widgets';
 
 const MainPage: FC = () => {
-	const { content } = useAppSelector(state => state.galleryReducer);
-	const { getImages } = useActions();
+	const { content, sort } = useAppSelector(state => state.galleryReducer);
+	const { getImages, setImages } = useActions();
 
 	useEffect(() => {
-		getImages();
+		const images = JSON.parse(localStorage.getItem(LS_IMAGES_KEY));
+		!images ? getImages(sort) : setImages(images);
 	}, []);
 
 	switch (content) {
 		case ContentEnum.GALLERY:
-			return <div>Gallery</div>;
+			return <Gallery />;
 		case ContentEnum.TREE:
 			return <div>Tree</div>;
 		default:

@@ -1,15 +1,17 @@
-import { ContentEnum, IImage } from 'shared/interfaces';
+import { ContentEnum, IImage, SortEnum } from 'shared/interfaces';
 import { GalleryAction, GalleryActionsEnum } from 'shared/model/action-types';
 import { LS_IMAGES_KEY } from 'shared/model/const';
 
 export interface GalleryState {
 	content: ContentEnum;
 	images: IImage[];
+	sort: SortEnum;
 }
 
 const initialState: GalleryState = {
 	content: ContentEnum.GALLERY,
-	images: []
+	images: [],
+	sort: SortEnum.NAME
 };
 
 const galleryReducer = (
@@ -22,6 +24,8 @@ const galleryReducer = (
 		case GalleryActionsEnum.SET_IMAGES:
 			localStorage.setItem(LS_IMAGES_KEY, JSON.stringify(action.payload));
 			return { ...state, images: action.payload };
+		case GalleryActionsEnum.SET_SORT:
+			return { ...state, sort: action.payload };
 		default:
 			return state;
 	}

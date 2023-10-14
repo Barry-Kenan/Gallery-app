@@ -1,1 +1,5 @@
-export { GalleryAction, GalleryActionsEnum } from './gallery/gallery.types';
+export {
+	GalleryAction,
+	GalleryActionsEnum,
+	GetImages
+} from './gallery/gallery.types';
