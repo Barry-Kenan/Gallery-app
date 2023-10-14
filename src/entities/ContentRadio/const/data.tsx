@@ -4,5 +4,5 @@ import { ContentRadioLabel } from 'shared/ui';
 
 export const contentRadioData = enumKeys(ContentEnum).map(e => ({
 	label: <ContentRadioLabel content={ContentEnum[e]} />,
-	value: e
+	value: ContentEnum[e]
 }));
