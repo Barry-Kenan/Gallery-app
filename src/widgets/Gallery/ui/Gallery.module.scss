@@ -1,0 +1,11 @@
+@use 'shared/styles' as *;
+
+.wrapper {
+	position: relative;
+
+	.settings {
+		position: sticky;
+		top: 0;
+		margin: 0 auto;
+	}
+}
