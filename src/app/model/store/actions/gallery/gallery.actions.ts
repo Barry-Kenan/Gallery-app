@@ -1,4 +1,5 @@
 import { setContent } from 'entities/ContentRadio';
+import { selectImage } from 'features/Cards';
 import { setSort } from 'features/Settings';
 import { IImage, SortEnum } from 'shared/interfaces';
 import { GalleryAction, GalleryActionsEnum } from 'shared/model/action-types';
@@ -23,5 +24,6 @@ export const galleryActions = {
 	setImages,
 	getImages,
 	setSort,
-	setTotalCount
+	setTotalCount,
+	selectImage
 };

@@ -7,13 +7,15 @@ export interface GalleryState {
 	images: IImage[];
 	sort: SortEnum;
 	totalCount: number;
+	selectedImage: IImage;
 }
 
 const initialState: GalleryState = {
 	content: ContentEnum.GALLERY,
 	images: [],
 	sort: SortEnum.NAME,
-	totalCount: null
+	totalCount: 660,
+	selectedImage: null
 };
 
 const galleryReducer = (
@@ -30,6 +32,8 @@ const galleryReducer = (
 			return { ...state, sort: action.payload };
 		case GalleryActionsEnum.SET_TOTAL_COUNT:
 			return { ...state, totalCount: action.payload };
+		case GalleryActionsEnum.SELECT_IMAGE:
+			return { ...state, selectedImage: action.payload };
 		default:
 			return state;
 	}

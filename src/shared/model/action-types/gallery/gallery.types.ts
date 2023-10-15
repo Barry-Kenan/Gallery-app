@@ -5,7 +5,8 @@ export enum GalleryActionsEnum {
 	SET_IMAGES = 'SET_IMAGES',
 	GET_IMAGES = 'GET_IMAGES',
 	SET_SORT = 'SET_SORT',
-	SET_TOTAL_COUNT = 'SET_TOTAL_COUNT'
+	SET_TOTAL_COUNT = 'SET_TOTAL_COUNT',
+	SELECT_IMAGE = 'SELECT_IMAGE'
 }
 
 export interface SetContent {
@@ -32,9 +33,15 @@ export interface SetTotalCount {
 	payload: number;
 }
 
+export interface SelectImage {
+	type: GalleryActionsEnum.SELECT_IMAGE;
+	payload: IImage;
+}
+
 export type GalleryAction =
 	| SetContent
 	| SetImages
 	| GetImages
 	| SetSort
-	| SetTotalCount;
+	| SetTotalCount
+	| SelectImage;
