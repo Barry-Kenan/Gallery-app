@@ -3,6 +3,7 @@ import { ContentEnum } from 'shared/interfaces';
 import { LS_IMAGES_KEY } from 'shared/model/const';
 import { useActions } from 'shared/model/hooks/useActions';
 import { useAppSelector } from 'shared/model/hooks/useAppSelector';
+import { sortArray } from 'shared/model/lib';
 import { Gallery, withLayout } from 'widgets';
 
 const MainPage: FC = () => {
@@ -11,7 +12,7 @@ const MainPage: FC = () => {
 
 	useEffect(() => {
 		const images = JSON.parse(localStorage.getItem(LS_IMAGES_KEY));
-		!images ? getImages(sort) : setImages(images);
+		!images ? getImages(sort) : setImages(sortArray(images, sort));
 	}, []);
 
 	switch (content) {
