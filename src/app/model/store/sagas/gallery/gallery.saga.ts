@@ -11,6 +11,7 @@ function* getImagesSaga({ payload }: GetImages) {
 		images = images.map((e, i) => ({ ...e, id: i }));
 		const sortedImages = sortArray(images, payload);
 		yield put(galleryActions.setImages(sortedImages));
+		yield put(galleryActions.setTotalCount(sortedImages.length));
 	} catch (error) {
 		// eslint-disable-next-line no-console
 		console.log(error);

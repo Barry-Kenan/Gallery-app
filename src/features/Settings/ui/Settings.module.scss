@@ -20,5 +20,11 @@
 				fill: $primary;
 			}
 		}
+
+		&:disabled {
+			svg * {
+				fill: $gray;
+			}
+		}
 	}
 }

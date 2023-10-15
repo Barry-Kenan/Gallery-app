@@ -13,4 +13,15 @@ const getImages = (payload: SortEnum): GalleryAction => ({
 	payload
 });
 
-export const galleryActions = { setContent, setImages, getImages, setSort };
+const setTotalCount = (payload: number): GalleryAction => ({
+	type: GalleryActionsEnum.SET_TOTAL_COUNT,
+	payload
+});
+
+export const galleryActions = {
+	setContent,
+	setImages,
+	getImages,
+	setSort,
+	setTotalCount
+};

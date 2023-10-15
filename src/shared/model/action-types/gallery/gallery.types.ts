@@ -4,7 +4,8 @@ export enum GalleryActionsEnum {
 	SET_CONTENT = 'SET_CONTENT',
 	SET_IMAGES = 'SET_IMAGES',
 	GET_IMAGES = 'GET_IMAGES',
-	SET_SORT = 'SET_SORT'
+	SET_SORT = 'SET_SORT',
+	SET_TOTAL_COUNT = 'SET_TOTAL_COUNT'
 }
 
 export interface SetContent {
@@ -26,4 +27,14 @@ export interface SetSort {
 	payload: SortEnum;
 }
 
-export type GalleryAction = SetContent | SetImages | GetImages | SetSort;
+export interface SetTotalCount {
+	type: GalleryActionsEnum.SET_TOTAL_COUNT;
+	payload: number;
+}
+
+export type GalleryAction =
+	| SetContent
+	| SetImages
+	| GetImages
+	| SetSort
+	| SetTotalCount;
