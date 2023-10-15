@@ -28,3 +28,10 @@
 		}
 	}
 }
+
+@media screen and (width < 495px) {
+	.settings {
+		flex-direction: column;
+		gap: 10px;
+	}
+}

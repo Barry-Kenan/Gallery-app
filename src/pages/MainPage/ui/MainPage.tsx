@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, memo, useEffect } from 'react';
 import { ContentEnum } from 'shared/interfaces';
 import { LS_IMAGES_KEY } from 'shared/model/const';
 import { useActions } from 'shared/model/hooks/useActions';
@@ -6,7 +6,7 @@ import { useAppSelector } from 'shared/model/hooks/useAppSelector';
 import { sortArray } from 'shared/model/lib';
 import { Gallery, withLayout } from 'widgets';
 
-const MainPage: FC = () => {
+const MainPage: FC = memo(() => {
 	const { content, sort } = useAppSelector(state => state.galleryReducer);
 	const { getImages, setImages } = useActions();
 
@@ -23,6 +23,6 @@ const MainPage: FC = () => {
 		default:
 			const _never: never = content;
 	}
-};
+});
 
 export default withLayout(MainPage);

@@ -1,16 +1,34 @@
+import { Button } from 'antd';
 import cn from 'classnames';
 import { ContentRadio } from 'entities';
-import { FC } from 'react';
+import { FC, memo } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styles from './Header.module.scss';
 import { HeaderProps } from './Header.props';
+import BackIcon from './back.svg';
 
-const Header: FC<HeaderProps> = ({ className, ...props }) => {
+const Header: FC<HeaderProps> = memo(({ className, ...props }) => {
+	const location = useLocation();
+	const navigate = useNavigate();
+
+	const handleBack = () => {
+		navigate('/');
+	};
+
 	return (
 		<div className={cn(className, styles.header)} {...props}>
-			Logo
-			<ContentRadio />
+			{location.pathname === '/' ? (
+				<>
+					<h3 className={styles.logo}>Logo</h3>
+					<ContentRadio />
+				</>
+			) : (
+				<Button onClick={handleBack}>
+					<BackIcon />
+				</Button>
+			)}
 		</div>
 	);
-};
+});
 
 export default Header;

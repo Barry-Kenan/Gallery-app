@@ -2,6 +2,7 @@ import { Button } from 'antd';
 import { motion, useReducedMotion } from 'framer-motion';
 import { FC } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useNavigate } from 'react-router-dom';
 import { IImage } from 'shared/interfaces';
 import { useActions, useAppSelector } from 'shared/model/hooks';
 import styles from './Cards.module.scss';
@@ -9,13 +10,14 @@ import CloseIcon from './close.svg';
 
 const Cards: FC = () => {
 	const { images } = useAppSelector(state => state.galleryReducer);
-	const { setImages } = useActions();
+	const { setImages, selectImage } = useActions();
 	const API_URL = process.env.API_URL;
 	const shouldReduceMotion = useReducedMotion();
+	const navigate = useNavigate();
 
 	const handleClickCard = (e: IImage) => {
-		// eslint-disable-next-line no-console
-		console.log(e);
+		selectImage(e);
+		navigate(`/${e.id}`);
 	};
 
 	const handleClose = (id: number) => {
@@ -37,11 +39,10 @@ const Cards: FC = () => {
 						alt={e.category}
 						effect='blur'
 						className={styles.image}
-						onClick={() => handleClickCard(e)}
 					/>
-					<h5 onClick={() => handleClickCard(e)}>
-						{e.image.replace(`${e.category}/`, '')}
-					</h5>
+					<div className={styles.content} onClick={() => handleClickCard(e)}>
+						<h5>{e.image.replace(`${e.category}/`, '')}</h5>
+					</div>
 					<Button
 						className={styles.closeButton}
 						onClick={() => handleClose(e.id)}

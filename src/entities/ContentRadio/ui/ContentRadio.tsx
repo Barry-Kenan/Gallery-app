@@ -1,11 +1,11 @@
 import { Radio, RadioChangeEvent } from 'antd';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useActions } from 'shared/model/hooks/useActions';
 import { useAppSelector } from 'shared/model/hooks/useAppSelector';
 import { contentRadioData } from '../const/data';
 import styles from './ContentRadio.module.scss';
 
-const ContentRadio: FC = () => {
+const ContentRadio: FC = memo(() => {
 	const { content } = useAppSelector(state => state.galleryReducer);
 	const { setContent } = useActions();
 
@@ -24,6 +24,6 @@ const ContentRadio: FC = () => {
 			className={styles.radio}
 		/>
 	);
-};
+});
 
 export default ContentRadio;
