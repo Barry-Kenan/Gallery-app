@@ -6,7 +6,9 @@ export enum GalleryActionsEnum {
 	GET_IMAGES = 'GET_IMAGES',
 	SET_SORT = 'SET_SORT',
 	SET_TOTAL_COUNT = 'SET_TOTAL_COUNT',
-	SELECT_IMAGE = 'SELECT_IMAGE'
+	SELECT_IMAGE = 'SELECT_IMAGE',
+	SET_LOADING = 'SET_LOADING',
+	SET_ERROR = 'SET_ERROR'
 }
 
 export interface SetContent {
@@ -38,10 +40,22 @@ export interface SelectImage {
 	payload: IImage;
 }
 
+export interface SetLoading {
+	type: GalleryActionsEnum.SET_LOADING;
+	payload: boolean;
+}
+
+export interface SetError {
+	type: GalleryActionsEnum.SET_ERROR;
+	payload: string;
+}
+
 export type GalleryAction =
 	| SetContent
 	| SetImages
 	| GetImages
 	| SetSort
 	| SetTotalCount
-	| SelectImage;
+	| SelectImage
+	| SetLoading
+	| SetError;

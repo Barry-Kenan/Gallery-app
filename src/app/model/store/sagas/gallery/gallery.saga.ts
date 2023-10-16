@@ -7,14 +7,16 @@ import { galleryActions } from '../../actions/gallery/gallery.actions';
 
 function* getImagesSaga({ payload }: GetImages) {
 	try {
+		yield put(galleryActions.setLoading(true));
 		let images: IImage[] = yield galleryApi.getImages();
 		images = images.map((e, i) => ({ ...e, id: i }));
 		const sortedImages = sortArray(images, payload);
 		yield put(galleryActions.setImages(sortedImages));
 		yield put(galleryActions.setTotalCount(sortedImages.length));
+		yield put(galleryActions.setLoading(false));
 	} catch (error) {
-		// eslint-disable-next-line no-console
-		console.log(error);
+		yield put(galleryActions.setLoading(false));
+		yield put(galleryActions.setError(error.message));
 	}
 }
 

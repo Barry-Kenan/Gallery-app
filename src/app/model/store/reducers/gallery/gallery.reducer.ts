@@ -8,6 +8,8 @@ export interface GalleryState {
 	sort: SortEnum;
 	totalCount: number;
 	selectedImage: IImage;
+	loading: boolean;
+	error: string;
 }
 
 const initialState: GalleryState = {
@@ -15,7 +17,9 @@ const initialState: GalleryState = {
 	images: [],
 	sort: SortEnum.NAME,
 	totalCount: 660,
-	selectedImage: null
+	selectedImage: null,
+	loading: false,
+	error: null
 };
 
 const galleryReducer = (
@@ -34,6 +38,10 @@ const galleryReducer = (
 			return { ...state, totalCount: action.payload };
 		case GalleryActionsEnum.SELECT_IMAGE:
 			return { ...state, selectedImage: action.payload };
+		case GalleryActionsEnum.SET_LOADING:
+			return { ...state, loading: action.payload };
+		case GalleryActionsEnum.SET_ERROR:
+			return { ...state, error: action.payload };
 		default:
 			return state;
 	}

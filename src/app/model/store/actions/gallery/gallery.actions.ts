@@ -19,11 +19,23 @@ const setTotalCount = (payload: number): GalleryAction => ({
 	payload
 });
 
+const setLoading = (payload: boolean): GalleryAction => ({
+	type: GalleryActionsEnum.SET_LOADING,
+	payload
+});
+
+const setError = (payload: string): GalleryAction => ({
+	type: GalleryActionsEnum.SET_ERROR,
+	payload
+});
+
 export const galleryActions = {
 	setContent,
 	setImages,
 	getImages,
 	setSort,
 	setTotalCount,
-	selectImage
+	selectImage,
+	setLoading,
+	setError
 };
