@@ -24,6 +24,7 @@ const Cards: FC = () => {
 		<div className={styles.grid}>
 			{images.map(e => (
 				<Card
+					key={e.id}
 					card={e}
 					handleClickCard={handleClickCard}
 					handleClose={handleClose}

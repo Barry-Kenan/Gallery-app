@@ -13,7 +13,6 @@ const Card: FC<CardProps> = memo(({ card, handleClickCard, handleClose }) => {
 	return (
 		<motion.div
 			className={styles.card}
-			key={card.id}
 			layout={shouldReduceMotion ? false : true}
 			transition={{ duration: 0.3 }}
 		>
