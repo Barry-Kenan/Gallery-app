@@ -1,11 +1,11 @@
 import { Tree } from 'antd';
 import { DataNode } from 'antd/es/tree';
-import { FC, useMemo } from 'react';
+import { FC, memo, useMemo } from 'react';
 import { useAppSelector } from 'shared/model/hooks';
 import { getTreeData } from '../lib/getTreeData';
 import styles from './Tree.module.scss';
 
-const TreeComponent: FC = () => {
+const TreeComponent: FC = memo(() => {
 	const { images } = useAppSelector(state => state.galleryReducer);
 	const treeData: DataNode[] = useMemo(() => getTreeData(images), [images]);
 
@@ -20,6 +20,6 @@ const TreeComponent: FC = () => {
 			/>
 		</div>
 	);
-};
+});
 
 export default TreeComponent;

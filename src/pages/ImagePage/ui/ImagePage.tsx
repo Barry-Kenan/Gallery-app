@@ -1,5 +1,6 @@
 import { ImageContent } from 'entities';
 import { FC } from 'react';
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 import { Navigate } from 'react-router-dom';
 import { useAppSelector } from 'shared/model/hooks';
 import { withLayout } from 'widgets';
@@ -9,9 +10,11 @@ const ImagePage: FC = () => {
 	const { selectedImage } = useAppSelector(state => state.galleryReducer);
 
 	return selectedImage ? (
-		<div className={styles.wrapper}>
-			<ImageContent />
-		</div>
+		<LazyLoadComponent>
+			<div className={styles.wrapper}>
+				<ImageContent />
+			</div>
+		</LazyLoadComponent>
 	) : (
 		<Navigate to='/' />
 	);

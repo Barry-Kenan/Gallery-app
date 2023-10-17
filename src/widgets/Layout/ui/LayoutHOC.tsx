@@ -1,16 +1,18 @@
-import { FunctionComponent } from 'react';
+import { FunctionComponent, memo } from 'react';
 import Layout from './Layout';
 
 const withLayout = <T extends Record<string, unknown>>(
 	Component: FunctionComponent<T>
 ) => {
-	return function withLayoutComponent(props: T): JSX.Element {
+	const withLayoutComponent = memo((props: T): JSX.Element => {
 		return (
 			<Layout>
 				<Component {...props} />
 			</Layout>
 		);
-	};
+	});
+
+	return withLayoutComponent;
 };
 
 export default withLayout;

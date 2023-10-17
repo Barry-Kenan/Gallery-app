@@ -10,6 +10,7 @@ const ContentRadioLabel: FC<ContentRadioLabelProps> = ({ content }) => {
 	const { content: selectedContent } = useAppSelector(
 		state => state.galleryReducer
 	);
+
 	const selectContent = () => {
 		switch (content) {
 			case ContentEnum.GALLERY:

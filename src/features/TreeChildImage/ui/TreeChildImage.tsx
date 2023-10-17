@@ -1,6 +1,6 @@
 import { Modal } from 'antd';
 import { ImageContent } from 'entities';
-import { FC, memo, useMemo, useState } from 'react';
+import { FC, memo, useCallback, useMemo, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useActions } from 'shared/model/hooks';
 import { getImageName } from 'shared/model/lib';
@@ -13,14 +13,14 @@ const TreeChildImage: FC<TreeChildImageProps> = memo(({ data }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const { selectImage } = useActions();
 
-	const handleOpen = () => {
+	const handleOpen = useCallback(() => {
 		selectImage(data);
 		setIsModalOpen(true);
-	};
+	}, [selectImage, setIsModalOpen]);
 
-	const handleCancel = () => {
+	const handleCancel = useCallback(() => {
 		setIsModalOpen(false);
-	};
+	}, [setIsModalOpen]);
 
 	return (
 		<>

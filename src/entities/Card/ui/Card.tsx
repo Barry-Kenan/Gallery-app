@@ -4,7 +4,7 @@ import { FC, memo } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import styles from './Card.module.scss';
 import { CardProps } from './Card.props';
-import CloseIcon from './close.svg';
+import CloseIcon from './icons/close.svg';
 
 const Card: FC<CardProps> = memo(({ card, handleClickCard, handleClose }) => {
 	const API_URL = process.env.API_URL;

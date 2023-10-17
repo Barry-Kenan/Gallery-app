@@ -1,12 +1,12 @@
 import { Button, Radio, RadioChangeEvent } from 'antd';
 import cn from 'classnames';
-import { FC, memo, useMemo } from 'react';
+import { FC, memo, useCallback, useMemo } from 'react';
 import { useActions, useAppSelector } from 'shared/model/hooks';
 import { sortArray } from 'shared/model/lib';
 import { sortRadioOptions } from '../const/sortRadioOptions';
 import styles from './Settings.module.scss';
 import { SettingsProps } from './Settings.props';
-import RefreshIcon from './refresh.svg';
+import RefreshIcon from './icons/refresh.svg';
 
 const Settings: FC<SettingsProps> = memo(({ className, ...props }) => {
 	const { setImages, setSort, getImages } = useActions();
@@ -14,15 +14,18 @@ const Settings: FC<SettingsProps> = memo(({ className, ...props }) => {
 		state => state.galleryReducer
 	);
 
-	const handleOnChange = ({ target: { value } }: RadioChangeEvent) => {
-		setSort(value);
-		const sortedImages = sortArray(images, value);
-		setImages(sortedImages);
-	};
+	const handleOnChange = useCallback(
+		({ target: { value } }: RadioChangeEvent) => {
+			setSort(value);
+			const sortedImages = sortArray(images, value);
+			setImages(sortedImages);
+		},
+		[setSort, setImages]
+	);
 
-	const returnAllImages = () => {
+	const returnAllImages = useCallback(() => {
 		getImages(sort);
-	};
+	}, [getImages]);
 
 	const isAllImages = useMemo(
 		() => images.length === totalCount,

@@ -1,5 +1,5 @@
 import { notification } from 'antd';
-import { FC, memo, useEffect } from 'react';
+import { FC, memo, useCallback, useEffect } from 'react';
 import { ContentEnum } from 'shared/interfaces';
 import { LS_IMAGES_KEY } from 'shared/model/const';
 import { useActions } from 'shared/model/hooks/useActions';
@@ -11,15 +11,16 @@ const MainPage: FC = memo(() => {
 	const { content, sort, error } = useAppSelector(
 		state => state.galleryReducer
 	);
+
 	const { getImages, setImages, setError } = useActions();
 	const [api, contextHolder] = notification.useNotification();
 
-	const openNotification = () => {
+	const openNotification = useCallback(() => {
 		api.error({
 			message: 'Ошибка',
 			description: error
 		});
-	};
+	}, [error]);
 
 	useEffect(() => {
 		const images = JSON.parse(localStorage.getItem(LS_IMAGES_KEY));
@@ -33,7 +34,7 @@ const MainPage: FC = memo(() => {
 		}
 	}, [error]);
 
-	const selectContent = () => {
+	const selectContent = useCallback(() => {
 		switch (content) {
 			case ContentEnum.GALLERY:
 				return <Gallery />;
@@ -42,7 +43,7 @@ const MainPage: FC = memo(() => {
 			default:
 				const _never: never = content;
 		}
-	};
+	}, [content]);
 
 	return (
 		<>
