@@ -1,11 +1,11 @@
 import cn from 'classnames';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { useAppSelector } from 'shared/model/hooks';
 import { getImageDate, getImageName, getImageSize } from 'shared/model/lib';
 import styles from './ImageContent.module.scss';
 import { ImageContentProps } from './ImageContent.props';
 
-const ImageContent: FC<ImageContentProps> = ({ className, ...props }) => {
+const ImageContent: FC<ImageContentProps> = memo(({ className, ...props }) => {
 	const API_URL = process.env.API_URL;
 	const { selectedImage } = useAppSelector(state => state.galleryReducer);
 	const name = getImageName(selectedImage);
@@ -27,6 +27,6 @@ const ImageContent: FC<ImageContentProps> = ({ className, ...props }) => {
 			</div>
 		</div>
 	);
-};
+});
 
 export default ImageContent;
