@@ -1,0 +1,21 @@
+@use 'shared/styles' as *;
+
+.wrapper {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	margin-top: 10px;
+
+	.image {
+		width: 100px;
+		aspect-ratio: 3 / 2;
+		object-fit: cover;
+		object-position: center;
+		border-radius: $radius;
+	}
+}
+
+.imageContent {
+	margin: 0 auto;
+	background-color: $white;
+}

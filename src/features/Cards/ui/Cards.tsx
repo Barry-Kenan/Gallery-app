@@ -1,5 +1,5 @@
 import { Card } from 'entities';
-import { FC } from 'react';
+import { FC, useDeferredValue } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { IImage } from 'shared/interfaces';
 import { useActions, useAppSelector } from 'shared/model/hooks';
@@ -9,6 +9,7 @@ const Cards: FC = () => {
 	const { images } = useAppSelector(state => state.galleryReducer);
 	const { setImages, selectImage } = useActions();
 	const navigate = useNavigate();
+	const deferredImages = useDeferredValue(images);
 
 	const handleClickCard = (e: IImage) => {
 		selectImage(e);
@@ -22,7 +23,7 @@ const Cards: FC = () => {
 
 	return (
 		<div className={styles.grid}>
-			{images.map(e => (
+			{deferredImages.map(e => (
 				<Card
 					key={e.id}
 					card={e}

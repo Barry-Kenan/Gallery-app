@@ -1,0 +1,11 @@
+@use 'shared/styles' as *;
+
+.wrapper {
+	margin: 20px;
+
+	.tree {
+		color: $primary;
+		font-size: 18px;
+		text-transform: uppercase;
+	}
+}

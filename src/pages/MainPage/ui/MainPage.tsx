@@ -5,7 +5,7 @@ import { LS_IMAGES_KEY } from 'shared/model/const';
 import { useActions } from 'shared/model/hooks/useActions';
 import { useAppSelector } from 'shared/model/hooks/useAppSelector';
 import { sortArray } from 'shared/model/lib';
-import { Gallery, withLayout } from 'widgets';
+import { Gallery, Tree, withLayout } from 'widgets';
 
 const MainPage: FC = memo(() => {
 	const { content, sort, error } = useAppSelector(
@@ -38,7 +38,7 @@ const MainPage: FC = memo(() => {
 			case ContentEnum.GALLERY:
 				return <Gallery />;
 			case ContentEnum.TREE:
-				return <div>Tree</div>;
+				return <Tree />;
 			default:
 				const _never: never = content;
 		}
